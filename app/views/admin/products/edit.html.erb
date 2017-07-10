@@ -8,9 +8,9 @@
   <%= f.input :price %>
   <%= f.input :quantity %>
 
-  <% if @product.image.present? >
+  <% if @product.image.present? %>
     <%= image_tag(@product.image.thumb.url) %>
-  <% end >
+  <% end %>
 
   <%= f.input :image, as: :file %>
 
