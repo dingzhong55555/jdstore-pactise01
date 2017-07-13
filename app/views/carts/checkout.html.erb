@@ -1,0 +1,50 @@
+<h3>购物明细</h3>
+
+<br>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>商品明细</th>
+      <th>商品单价</th>
+      <th>商品数量</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% current_cart.cart_items.each do |cart_item| %>
+    <tr>
+      <td>
+        <%= link_to(cart_item.product.title, product_path(cart_item.product)) %>
+      </td>
+      <td>
+        <%= cart_item.product.price %>
+      </td>
+      <td>
+        <%= cart_item.quantity %>
+      </td>
+    </tr
+    <% end %>
+  </tbody>
+</table>
+
+<div class="total clearfix">
+  <span class="pull-right">
+    总计 <%= render_cart_total_price(current_cart) %> RMB
+  </span>
+</div>
+
+<hr>
+
+<h3>订单明细</h3>
+<br>
+<%= simple_form_for @order do |f| %>
+  <h4>订货人资讯</h4>
+  <%= f.input :billing_name %>
+  <%= f.input :billing_address %>
+  <hr>
+  <h4>收货人资讯</h4>
+  <%= f.input :shipping_name %>
+  <%= f.input :shipping_address %>
+
+  <%= f.submit "生成订单", class: "btn btn-lg btn-danger pull-right", data: {disable_with: "Submiting..."} %>
+<% end %>
