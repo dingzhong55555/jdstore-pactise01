@@ -1,4 +1,5 @@
 class OrderMailer < ApplicationMailer
+
   def notify_order_placed(order)
     @order = order
     @user = order.user
@@ -6,4 +7,7 @@ class OrderMailer < ApplicationMailer
 
     mail(to: @user.email, subject: "[jDstore] 感谢你完成本次下单，以下是您这次的购物明细#{order.token}")
   end
+
+
+
 end
